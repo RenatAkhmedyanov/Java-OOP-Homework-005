@@ -1,4 +1,4 @@
-public class Contact {
+public class Contact implements Printable {
 
     private String phoneNumber;
     private String firstName;
@@ -41,6 +41,7 @@ public class Contact {
         return this.phoneNumber.contains(str) || this.firstName.contains(str) || this.lastName.contains(str);
     }
 
+    @Override
     public void print() {
         System.out.println(this.phoneNumber + " " + this.firstName + " " + this.lastName);
     }

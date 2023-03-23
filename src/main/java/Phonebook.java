@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Phonebook implements Writing, Reading {
+public class Phonebook {
     public void addContact(ArrayList list) {
         System.out.println("Добавить новый контакт?");
         System.out.println("q - Выход, Enter - продолжение");
@@ -30,29 +30,15 @@ public class Phonebook implements Writing, Reading {
         int in = scan.nextInt();
         list.remove(in - 1);
     }
-    @Override
-    public void writeToFile(ArrayList<Contact> contactsList) throws IOException {
-        FileWriter writer = new FileWriter("phonebook.csv", false);
-        for(Contact c  : contactsList) {
-            writer.write(c.getPhoneNumber() + "," + c.getFirstName() + "," + c.getLastName() + "\n");
-        }
-        writer.close();
-    }
 
-    public void readFromFile(ArrayList contactsList){
-        File file = new File("phonebook.csv");
-        try {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String phoneNumber = Arrays.asList(line.split(",")).get(0);
-                    String firstName = Arrays.asList(line.split(",")).get(1);
-                    String lastName = Arrays.asList(line.split(",")).get(2);
-                    contactsList.add(new Contact(phoneNumber, firstName, lastName));
-                }
+    public void searchContact(ArrayList<Contact> list){
+        System.out.println("Введите номер, фамилию или имя контакта");
+        Scanner scn = new Scanner(System.in);
+        String input = scn.nextLine();
+        for (Contact c : list) {
+            if (c.contains(input)) {
+                c.print();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

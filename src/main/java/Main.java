@@ -6,7 +6,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Phonebook phonebook = new Phonebook();
         ArrayList<Contact> contactsList = new ArrayList<>();
-        phonebook.readFromFile(contactsList);
+        Reader reader = new Reader();
+        reader.readFromFile(contactsList);
         Menu menu = new Menu();
 
         while (true) {
@@ -20,28 +21,22 @@ public class Main {
                     System.out.print(i + 1 + ". ");
                     contactsList.get(i).print();
                 }
-
-                System.out.println("Enter для продолжения...");
-                input = scn.nextLine();
+                menu.pressEnter();
 
             } else if (input.equals("2")) {
                 phonebook.addContact(contactsList);
+
             } else if (input.equals("3")) {
-                System.out.println("Введите номер, фамилию или имя контакта");
-                input = scn.nextLine();
-                for (Contact c : contactsList) {
-                    if (c.contains(input)) {
-                        c.print();
-                    }
-                }
-                System.out.println("Enter для продолжения...");
-                input = scn.nextLine();
+                phonebook.searchContact(contactsList);
+                menu.pressEnter();
+
             } else if (input.equals("4")) {
                 phonebook.deleteContact(contactsList);
-                System.out.println("Enter для продолжения...");
-                input = scn.nextLine();
+                menu.pressEnter();
+
             } else if (input.equals("5")) {
-                phonebook.writeToFile(contactsList);
+                Writer writer = new Writer();
+                writer.writeToFile(contactsList);
             }
         }
     }

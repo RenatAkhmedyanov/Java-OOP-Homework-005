@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Menu {
     public void mainMenu() {
         System.out.println("=".repeat(25) + "\n" +
@@ -10,6 +12,11 @@ public class Menu {
                              "4 - Удалить контакт\n" +
                              "5 - Записать в файл\n" +
                              "q - Выход из программы");
+    }
 
+    public void pressEnter(){
+        System.out.println("Enter для продолжения...");
+        Scanner scn = new Scanner(System.in);
+        String input = scn.nextLine();
     }
 }

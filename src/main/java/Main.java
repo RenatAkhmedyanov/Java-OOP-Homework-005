@@ -27,14 +27,17 @@ public class Main {
                 phonebook.addContact(contactsList);
 
             } else if (input.equals("3")) {
+                phonebook.setAdditionalNumber(contactsList);
+
+            } else if (input.equals("4")) {
                 phonebook.searchContact(contactsList);
                 menu.pressEnter();
 
-            } else if (input.equals("4")) {
+            } else if (input.equals("5")) {
                 phonebook.deleteContact(contactsList);
                 menu.pressEnter();
 
-            } else if (input.equals("5")) {
+            } else if (input.equals("6")) {
                 Writer writer = new Writer();
                 writer.writeToFile(contactsList);
             }

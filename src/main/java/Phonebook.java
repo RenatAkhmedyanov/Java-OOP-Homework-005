@@ -1,6 +1,4 @@
-import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Phonebook {
@@ -21,6 +19,19 @@ public class Phonebook {
                 String inputLastName = scn.nextLine();
                 System.out.println("q - Выход, Enter - продолжение");
                 list.add(new Contact(inputPhone, inputFirstName, inputLastName));
+            }
+        }
+    }
+
+    public void setAdditionalNumber(ArrayList<Contact> list) {
+        System.out.println("Введите номер, фамилию или имя контакта");
+        Scanner scn = new Scanner(System.in);
+        String input = scn.nextLine();
+        for (Contact c : list) {
+            if (c.contains(input)) {
+                System.out.println("Введите номер: ");
+                input = scn.nextLine();
+                c.setPhoneNumber(input);
             }
         }
     }
